@@ -1,0 +1,5 @@
+services: postgresql
+script:
+  - cd sql
+  - psql -U postgres -f 0_runAllScripts.sql | cat
+  - pg_dump -U postgres elektronik
