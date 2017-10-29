@@ -14,8 +14,8 @@ CREATE USER :user WITH PASSWORD :password;
 CREATE DATABASE :database WITH OWNER :user;
 \c :database :user
 
-set client_min_messages = ERROR
-set client_encoding = 'UTF8'
+set client_min_messages = ERROR;
+set client_encoding = 'UTF8';
 
 -- IMPORT OTHER FILES
 \i 2_schema.sql
