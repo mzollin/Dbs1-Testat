@@ -2,7 +2,7 @@
 
 -- VARIABLES
 \set user cocktailerswift
-\set password '\'weakSwan'\'
+\set password '\'weakSwan\''
 \set database cocktailmixer_db
 \set ON_ERROR_STOP on
 
