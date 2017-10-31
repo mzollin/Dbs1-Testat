@@ -15,8 +15,8 @@ CREATE TABLE glas_typ (
     name                TEXT    PRIMARY KEY,
     anzahl              INTEGER DEFAULT 0,
     volumen_ml          INTEGER NOT NULL,
-    durchmesser_cm      INTEGER NOT NULL,
-    hoehe_cm            INTEGER NOT NULL
+    durchmesser_cm      DECIMAL NOT NULL,
+    hoehe_cm            DECIMAL NOT NULL
 );
 
 CREATE TABLE zutaten (
@@ -36,6 +36,6 @@ CREATE TABLE festzutaten (
     name                TEXT    PRIMARY KEY,
     dichte_g_pro_cm3    DECIMAL NOT NULL,
     gewicht_g           INTEGER NOT NULL,
-    durchmesser_mm      INTEGER NOT NULL,
-    hoehe_mm            INTEGER NOT NULL
+    durchmesser_cm      DECIMAL NOT NULL,
+    hoehe_cm            DECIMAL NOT NULL
 );
