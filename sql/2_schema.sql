@@ -22,7 +22,7 @@ CREATE TABLE glas_typ (
 CREATE TABLE zutaten (
     name                TEXT    PRIMARY KEY,
     vorrat_ml           INTEGER DEFAULT 0,
-    alkohol_volproz     INTEGER NOT NULL
+    alkohol_volproz     INTEGER DEFAULT 0
 );
 
 CREATE TABLE zutaten_zuteilung (
