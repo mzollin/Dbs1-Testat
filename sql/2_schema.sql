@@ -34,7 +34,8 @@ CREATE TABLE zutaten_zuteilung (
 
 CREATE TABLE festzutaten (
     name                TEXT    PRIMARY KEY,
-    dichte_g_pro_cm3    INTEGER NOT NULL,
+    dichte_g_pro_cm3    DECIMAL NOT NULL,
+    gewicht_g           INTEGER NOT NULL,
     durchmesser_mm      INTEGER NOT NULL,
     hoehe_mm            INTEGER NOT NULL
 );
