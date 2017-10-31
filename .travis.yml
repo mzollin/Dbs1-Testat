@@ -1,5 +1,5 @@
 services: postgresql
 script:
   - cd sql
-  - psql -U postgres -f 0_runAllScripts.sql | cat
+  - psql -U postgres -f 0_runAllScripts.sql
   #- pg_dump -U postgres cocktailmixer_db
