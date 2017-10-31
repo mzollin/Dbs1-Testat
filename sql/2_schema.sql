@@ -26,8 +26,8 @@ CREATE TABLE zutaten (
 )
 
 CREATE TABLE zutaten_zuteilung (
-    cocktail_rezept     TEXT    NOT NULL,
-    zutaten             TEXT    NOT NULL,
+    cocktail_rezept     TEXT    PRIMARY KEY,
+    zutaten             TEXT    PRIMARY KEY,
     volumen_ml          INTEGER NOT NULL
 )
 
