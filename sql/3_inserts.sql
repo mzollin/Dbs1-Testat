@@ -16,10 +16,10 @@ INSERT INTO cocktail_rezept VALUES ('Cuba Libre', 'Highball', TRUE);
 INSERT INTO glas_typ VALUES ('Highball', 3, 269, 7, 15);
 
 -- TABLE ZUTATEN
-INSERT INTO zutaten VALUES ('Cola', 1500);
-INSERT INTO zutaten VALUES ('Rum hell', 750, 42);
-INSERT INTO zutaten VALUES ('Limettensaft', 150);
-INSERT INTO zutaten VALUES ('Eiswuerfel', 24);
+INSERT INTO zutaten VALUES ('Cola', 1500),
+                           ('Rum hell', 750, 42),
+                           ('Limettensaft', 150),
+                           ('Eiswuerfel', 24);
 
 -- TABLE ZUTATENZUTEILUNG
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Cola', 120);
