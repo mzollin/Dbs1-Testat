@@ -18,8 +18,8 @@ GlasTyp (
         Name                VARCHAR PK,
 		Anzahl              INTEGER DEFAULT(0),
 		Volumen_ml          INTEGER NOT NULL,
-		Durchmesser_mm      INTEGER NOT NULL,
-		Hoehe_mm            INTEGER NOT NULL
+		Durchmesser_cm      INTEGER NOT NULL,
+		Hoehe_cm            INTEGER NOT NULL
     )
 
 Zutaten (

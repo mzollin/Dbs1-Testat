@@ -15,8 +15,8 @@ CREATE TABLE glas_typ (
     name                TEXT    PRIMARY KEY,
     anzahl              INTEGER DEFAULT 0,
     volumen_ml          INTEGER NOT NULL,
-    durchmesser_mm      INTEGER NOT NULL,
-    hoehe_mm            INTEGER NOT NULL
+    durchmesser_cm      INTEGER NOT NULL,
+    hoehe_cm            INTEGER NOT NULL
 )
 
 CREATE TABLE zutaten (

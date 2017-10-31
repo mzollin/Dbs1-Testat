@@ -5,6 +5,8 @@
  * Zollinger Marco
  *
  */
+ 
+-- Glasvolumen: Volumen_ml = PI * (Durchmesser_cm/2)^2 * Hoehe_cm
 
 -- TABLE COCKTAILREZEPT
 INSERT INTO cocktail_rezept VALUES ();
