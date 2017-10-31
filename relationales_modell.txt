@@ -25,7 +25,7 @@ GlasTyp (
 Zutaten (
         Name                VARCHAR PK,
         Vorrat_ml           INTEGER DEFAULT(0),
-        Alkohol_volproz     INTEGER NOT NULL
+        Alkohol_volproz     INTEGER DEFAULT(0)
     )
 
 ZutatenZuteilung (

@@ -28,4 +28,4 @@ INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Limettensaft', 10);
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Eiswuerfel', 4);
 
 -- TABLE FESTZUTATEN
-INSERT INTO festzutaten VALUES ('Eiswuerfel', 0.92, 1, 1.4, 1);
+--INSERT INTO festzutaten VALUES ('Eiswuerfel', 0.92, 1, 1.4, 1);
