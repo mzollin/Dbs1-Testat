@@ -24,10 +24,3 @@ ALTER TABLE festzutaten
 ADD CONSTRAINT fk_name_von_zutaten_name
     FOREIGN KEY (name) REFERENCES zutaten (name)
 ;
-
-ALTER TABLE cocktail_rezept
-ADD rating INTEGER;
-
-ALTER TABLE cocktail_rezept
-ALTER COLUMN rating SET DEFAULT 5
-;
