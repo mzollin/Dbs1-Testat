@@ -18,8 +18,8 @@ GlasTyp (
         Name                VARCHAR PK,
         Anzahl              INTEGER DEFAULT(0),
         Volumen_ml          INTEGER NOT NULL,
-        Durchmesser_cm      INTEGER NOT NULL,
-        Hoehe_cm            INTEGER NOT NULL
+        Durchmesser_cm      DECIMAL NOT NULL,
+        Hoehe_cm            DECIMAL NOT NULL
     )
 
 Zutaten (
@@ -36,7 +36,8 @@ ZutatenZuteilung (
 
 FestZutaten (
         Name                VARCHAR PK FK(ZutatenZuteilung.Name),
-        Dichte_g_pro_cm3    INTEGER NOT NULL,
-        Durchmesser_mm      INTEGER NOT NULL,
-        Hoehe_mm            INTEGER NOT NULL
+        Dichte_g_pro_cm3    DECIMAL NOT NULL,
+        Gewicht_g           INTEGER NOT NULL,
+        Durchmesser_cm      DECIMAL NOT NULL,
+        Hoehe_cm            DECIMAL NOT NULL
     )

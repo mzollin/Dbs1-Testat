@@ -6,7 +6,8 @@
  *
  */
  
--- Glasvolumen: Volumen_ml = PI * (Durchmesser_cm/2)^2 * Hoehe_cm
+-- Glasvolumen: Volumen_ml = Round(PI * (Durchmesser_cm/2)^2 * Hoehe_cm)
+-- Festzutatenvolumen: Volumen_ml = Round(Gewicht_g / Dichte_g_pro_cm3)
 
 -- TABLE COCKTAILREZEPT
 INSERT INTO cocktail_rezept VALUES ('Cuba Libre', 'Highball', TRUE);
@@ -23,7 +24,7 @@ INSERT INTO zutaten VALUES ('Limettensaft', 150, 0);
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Cola', 120);
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Rum hell', 50);
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Limettensaft', 10);
-INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Eiswuerfel', NULL);    -- FIXME
+INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Eiswuerfel', 4);
 
 -- TABLE FESTZUTATEN
-INSERT INTO festzutaten VALUES ('Eiswuerfel', 1, 14, 10);
+INSERT INTO festzutaten VALUES ('Eiswuerfel', 0.92, 1, 1.4, 1);
