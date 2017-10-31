@@ -10,33 +10,33 @@
 
 CocktailRezept (
         Name                VARCHAR PK,
-		GlasTyp             FK(GlasTyp.Name),
-	    EnthaeltAlkohol     BOOLEAN DEFAULT(TRUE)
-	)
+        GlasTyp             FK(GlasTyp.Name),
+        EnthaeltAlkohol     BOOLEAN DEFAULT(TRUE)
+    )
 
 GlasTyp (
         Name                VARCHAR PK,
-		Anzahl              INTEGER DEFAULT(0),
-		Volumen_ml          INTEGER NOT NULL,
-		Durchmesser_cm      INTEGER NOT NULL,
-		Hoehe_cm            INTEGER NOT NULL
+        Anzahl              INTEGER DEFAULT(0),
+        Volumen_ml          INTEGER NOT NULL,
+        Durchmesser_cm      INTEGER NOT NULL,
+        Hoehe_cm            INTEGER NOT NULL
     )
 
 Zutaten (
         Name                VARCHAR PK,
-		Vorrat_ml           INTEGER DEFAULT(0),
-		Alkohol_volproz     INTEGER NOT NULL
-	)
+        Vorrat_ml           INTEGER DEFAULT(0),
+        Alkohol_volproz     INTEGER NOT NULL
+    )
 
 ZutatenZuteilung (
-        CocktailRezept	    PK FK(CocktailRezept.Name),
-		Zutaten			    PK FK(Zutaten.Name),
-		Volumen_ml          INTEGER NOT NULL
-	)
+        CocktailRezept      PK FK(CocktailRezept.Name),
+        Zutaten             PK FK(Zutaten.Name),
+        Volumen_ml          INTEGER NOT NULL
+    )
 
 FestZutaten (
         Name                VARCHAR PK FK(ZutatenZuteilung.Name),
-		Dichte_g_pro_cm3    INTEGER NOT NULL,
-		Durchmesser_mm      INTEGER NOT NULL,
-		Hoehe_mm            INTEGER NOT NULL
-	)
+        Dichte_g_pro_cm3    INTEGER NOT NULL,
+        Durchmesser_mm      INTEGER NOT NULL,
+        Hoehe_mm            INTEGER NOT NULL
+    )
