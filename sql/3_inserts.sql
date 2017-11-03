@@ -29,16 +29,20 @@ INSERT INTO zutaten VALUES ('Cola', 1500, 0),
                            ('Limettensaft', 150, 0),
                            ('Eiswuerfel', 24, 0);
 INSERT INTO zutaten VALUES ('Gin', 500, 39),
-                           ('Wermuth trocken', 1000, 18);
+                           ('Wermuth trocken', 1000, 18),
+                           ('Olive', 20, 0);
 INSERT INTO zutaten VALUES ('Wasser', 1500, 0);
 INSERT INTO zutaten VALUES ('Campari', 750, 25),
-                           ('Wermuth suess', 1000, 17);
+                           ('Wermuth suess', 1000, 17),
+                           ('Orangenschnitz', 8, 0);
 INSERT INTO zutaten VALUES ('Jaegermeister', 700, 35),
                            ('Rum dunkel', 750, 40);
 INSERT INTO zutaten VALUES ('Whisky', 750, 41),
-                           ('Angosturabitter', 200, 45);
+                           ('Angosturabitter', 200, 45),
+                           ('Cocktailkirsche', 25, 0);
 INSERT INTO zutaten VALUES ('Kokosnussmilch', 150, 0),
-                           ('Ananassaft', 500, 0);
+                           ('Ananassaft', 500, 0),
+                           ('Ananasschnitz', 16, 0);
 
 -- TABLE ZUTATENZUTEILUNG
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Cola', 120),
