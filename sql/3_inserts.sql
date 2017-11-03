@@ -38,7 +38,7 @@ INSERT INTO zutaten VALUES ('Jaegermeister', 700, 35),
 INSERT INTO zutaten VALUES ('Whisky', 750, 41),
                            ('Angosturabitter', 200, 45);
 INSERT INTO zutaten VALUES ('Kokosnussmilch', 150, 0),
-                           ('Ananassaft', 500, 0),
+                           ('Ananassaft', 500, 0);
 
 -- TABLE ZUTATENZUTEILUNG
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Cola', 120),
