@@ -1,9 +1,8 @@
 /*
- * Testdaten einfügen
+ * INSERTS 'CocktailmixerDB'
  * 
  * Stocker Michael
  * Zollinger Marco
- *
  */
  
 -- Glasvolumen: Volumen_ml = Round(PI * (Durchmesser_cm/2)^2 * Hoehe_cm)
