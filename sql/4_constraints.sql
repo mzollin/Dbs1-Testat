@@ -12,7 +12,7 @@ ADD CONSTRAINT fk_glastyp_von_glastyp_name
 
 ALTER TABLE zutaten_zuteilung
 ADD CONSTRAINT fk_cocktailrezept_von_cocktailrezept_name
-    FOREIGN KEY (cocktail_rezept) REFERENCES cocktail_rezept (name)
+    FOREIGN KEY (cocktail_rezept) REFERENCES cocktail_rezept (name) ON DELETE CASCADE
 ;
 
 ALTER TABLE zutaten_zuteilung
@@ -22,5 +22,5 @@ ADD CONSTRAINT fk_zutaten_von_zutaten_name
 
 ALTER TABLE festzutaten
 ADD CONSTRAINT fk_name_von_zutaten_name
-    FOREIGN KEY (name) REFERENCES zutaten (name)
+    FOREIGN KEY (name) REFERENCES zutaten (name) ON DELETE CASCADE
 ;
