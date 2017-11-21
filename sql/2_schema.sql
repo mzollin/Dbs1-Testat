@@ -6,13 +6,13 @@
  */
 
 CREATE TABLE cocktail_rezept (
-    name                TEXT    PRIMARY KEY,
+    "name"                TEXT    PRIMARY KEY,
     glas_typ            TEXT    NOT NULL,
     enthaelt_alkohol    BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE glas_typ (
-    name                TEXT    PRIMARY KEY,
+    "name"                TEXT    PRIMARY KEY,
     anzahl              INTEGER DEFAULT 0,
     volumen_ml          INTEGER NOT NULL,
     durchmesser_cm      DECIMAL NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE glas_typ (
 );
 
 CREATE TABLE zutaten (
-    name                TEXT    PRIMARY KEY,
+    "name"                TEXT    PRIMARY KEY,
     vorrat_ml           INTEGER DEFAULT 0,
     alkohol_volproz     INTEGER DEFAULT 0
 );
@@ -33,7 +33,7 @@ CREATE TABLE zutaten_zuteilung (
 );
 
 CREATE TABLE festzutaten (
-    name                TEXT    PRIMARY KEY,
+    "name"                TEXT    PRIMARY KEY,
     dichte_g_pro_cm3    DECIMAL NOT NULL,
     gewicht_g           INTEGER NOT NULL,
     durchmesser_cm      DECIMAL NOT NULL,
