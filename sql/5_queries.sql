@@ -18,7 +18,8 @@ SELECT cocktail_rezept,
 SELECT DISTINCT glas_typ FROM cocktail_rezept;
 
 -- Count how many recipes exist for each glass type, order descending by occurence
-SELECT COUNT(name)
+SELECT COUNT(name),
+       glas_typ
   FROM cocktail_rezept
   GROUP BY glas_typ
   ORDER BY COUNT(name) DESC;
