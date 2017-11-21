@@ -16,3 +16,9 @@ SELECT cocktail_rezept,
 
 -- Get a list of glass types needed for the known cocktail recipes
 SELECT DISTINCT glas_typ FROM cocktail_rezept;
+
+-- Count how many recipes exist for each glass type, order descending by occurence
+SELECT COUNT(name)
+  FROM cocktail_rezept
+  GROUP BY glas_typ
+  ORDER BY COUNT(name) DESC;
