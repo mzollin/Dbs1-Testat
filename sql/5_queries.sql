@@ -27,4 +27,4 @@ SELECT COUNT(name),
   ORDER BY COUNT(name) DESC;
   
 SELECT cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml
-  FROM cocktail_rezept, glas_typ;
+  FROM cocktail_rezept INNER JOIN glas_typ;
