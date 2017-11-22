@@ -83,3 +83,5 @@ INSERT INTO festzutaten VALUES ('Olive', 1, 1, 0.8, 1.2);
 INSERT INTO festzutaten VALUES ('Orangenschnitz', 1, 1, 2.5, 4);
 INSERT INTO festzutaten VALUES ('Cocktailkirsche', 1, 1, 1, 1);
 INSERT INTO festzutaten VALUES ('Ananasschnitz', 1, 1, 3, 5);
+INSERT INTO festzutaten VALUES ('Cocktailschirmchen', 1, 1, 5, 3);
+INSERT INTO festzutaten VALUES ('Kiwischnitz', 1, 1, 2, 3);
