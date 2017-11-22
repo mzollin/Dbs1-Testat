@@ -25,3 +25,6 @@ SELECT COUNT(name),
   FROM cocktail_rezept
   GROUP BY glas_typ
   ORDER BY COUNT(name) DESC;
+  
+SELECT cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml
+  FROM cocktail_rezept, glas_typ;
