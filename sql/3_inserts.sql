@@ -9,12 +9,17 @@
 -- Festzutatenvolumen: Volumen_ml = Round(Gewicht_g / Dichte_g_pro_cm3)
 
 -- TABLE GLASTYP
+-- format: name, anzahl, volumen_ml, durchmesser_cm, hoehe_cm
 INSERT INTO glas_typ VALUES ('Highball Glas', 3, 269, 7, 15);
 INSERT INTO glas_typ VALUES ('Cocktail Glas', 11, 130, 9.2, 14.9);
 INSERT INTO glas_typ VALUES ('Shot Glas', 9, 44, 50, 60);
 INSERT INTO glas_typ VALUES ('Poco Glas', 3, 392, 8.9, 17.9);
+INSERT INTO glas_typ VALUES ('Martini Glas', 5, 150, 11, 14.9);
+INSERT INTO glas_typ VALUES ('Whiskey Glas', 2, 350, 7, 8);
+INSERT INTO glas_typ VALUES ('Bier Glas', 5, 240, 6.1, 16.9);
 
 -- TABLE COCKTAILREZEPT
+-- format: name, glas_typ, enthaelt_alkohol
 INSERT INTO cocktail_rezept VALUES ('Cuba Libre', 'Highball Glas', TRUE);
 INSERT INTO cocktail_rezept VALUES ('Martini', 'Cocktail Glas', TRUE);
 INSERT INTO cocktail_rezept VALUES ('Virgin Martini', 'Cocktail Glas', FALSE);
@@ -24,6 +29,7 @@ INSERT INTO cocktail_rezept VALUES ('Manhattan', 'Cocktail Glas', TRUE);
 INSERT INTO cocktail_rezept VALUES ('Pina Colada', 'Poco Glas', TRUE);
 
 -- TABLE ZUTATEN
+-- format: name, vorrat_ml, alkohol_volproz
 INSERT INTO zutaten VALUES ('Cola', 1500, 0),
                            ('Rum hell', 750, 42),
                            ('Limettensaft', 150, 0),
@@ -45,6 +51,7 @@ INSERT INTO zutaten VALUES ('Kokosnussmilch', 150, 0),
                            ('Ananasschnitz', 16, 0);
 
 -- TABLE ZUTATENZUTEILUNG
+-- format: cocktail_rezept, zutaten, volumen_ml
 INSERT INTO zutaten_zuteilung VALUES ('Cuba Libre', 'Cola', 120),
                                      ('Cuba Libre', 'Rum hell', 50),
                                      ('Cuba Libre', 'Limettensaft', 10),
@@ -70,6 +77,7 @@ INSERT INTO zutaten_zuteilung VALUES ('Pina Colada', 'Rum hell', 30),
                                      ('Pina Colada', 'Ananasschnitz', 1);
 
 -- TABLE FESTZUTATEN
+-- format: name, dichte_g_pro_cm3, gewicht_g, durchmesser_cm, hoehe_cm
 INSERT INTO festzutaten VALUES ('Eiswuerfel', 1, 1, 1.4, 1);
 INSERT INTO festzutaten VALUES ('Olive', 1, 1, 0.8, 1.2);
 INSERT INTO festzutaten VALUES ('Orangenschnitz', 1, 1, 2.5, 4);
