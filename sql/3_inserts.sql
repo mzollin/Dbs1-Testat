@@ -12,11 +12,11 @@
 -- format: name, anzahl, volumen_ml, durchmesser_cm, hoehe_cm
 INSERT INTO glas_typ VALUES ('Highball Glas', 3, 269, 7, 15);
 INSERT INTO glas_typ VALUES ('Cocktail Glas', 11, 130, 9.2, 14.9);
-INSERT INTO glas_typ VALUES ('Shot Glas', 9, 44, 50, 60);
+INSERT INTO glas_typ VALUES ('Shot Glas', 9, 44, 5, 6);
 INSERT INTO glas_typ VALUES ('Poco Glas', 3, 392, 8.9, 17.9);
 INSERT INTO glas_typ VALUES ('Martini Glas', 5, 150, 11, 14.9);
-INSERT INTO glas_typ VALUES ('Whiskey Glas', 2, 350, 7, 8);
-INSERT INTO glas_typ VALUES ('Bier Glas', 5, 240, 6.1, 16.9);
+INSERT INTO glas_typ VALUES ('Whiskey Glas', 2, 250, 7, 8);
+INSERT INTO glas_typ VALUES ('Old Fashioned Glas', 300, 8.4, 9.6);
 
 -- TABLE COCKTAILREZEPT
 -- format: name, glas_typ, enthaelt_alkohol
