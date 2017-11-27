@@ -21,7 +21,9 @@ SELECT cocktail_rezept.name AS CocktailRezept,
   GROUP BY cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml;
 
 -- 1.3: 
-
+SELECT "name" AS CocktailRezept
+  FROM cocktail_rezept
+  WHERE (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = FALSE);
 
 -- 1.4: Count how many recipes exist for each glass type, order descending by occurence
 SELECT COUNT(name),
