@@ -5,16 +5,6 @@
  * Zollinger Marco
  */
 
--- SELECT zutaten and present them nicely
--- TODO: improve this query and description
-SELECT cocktail_rezept AS CocktailRezept,
-       zutaten AS ZutatenName,
-       volumen_ml AS Menge,
-       alkohol_volproz AS Alkoholgehalt,
-       EXISTS(SELECT * FROM festzutaten WHERE "name" = zutaten_zuteilung.zutaten) AS fest
-  FROM zutaten_zuteilung FULL OUTER JOIN zutaten
-  ON zutaten_zuteilung.zutaten = zutaten."name";
-
 -- 1.1: Get a list of glass types needed for the known cocktail recipes
 SELECT DISTINCT glas_typ AS GlasTyp
   FROM cocktail_rezept;
@@ -45,7 +35,42 @@ SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
   FROM cocktail_rezept
   WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
   
--- 2.1: 
+/*
+ * 2.1: Print out all recipes in the database
+ *      (print a list of ingredients with the amount in ml of this ingredient,
+ *      alcohol percentage & a flag telling if it's a solid)
+ */
+SELECT CASE
+         WHEN "Zutat" IS NULL THEN NULL::text
+         ELSE "Cocktail"
+       END,
+       "Zutat",
+       "Menge(ml)",
+       "Alk(%)",
+       "Fest"
+  FROM (
+  SELECT * FROM (
+    SELECT cocktail_rezept AS "Cocktail",
+           zutaten AS "Zutat",
+           volumen_ml AS "Menge(ml)",
+           alkohol_volproz AS "Alk(%)",
+           CASE
+             WHEN EXISTS(SELECT * FROM festzutaten WHERE "name" = zutaten_zuteilung.zutaten) THEN 'Ja'
+             ELSE 'Nein'
+           END AS "Fest"
+      FROM zutaten_zuteilung FULL OUTER JOIN zutaten
+      ON zutaten_zuteilung.zutaten = zutaten."name"
+    
+      UNION ALL
+      SELECT DISTINCT cocktail_rezept,
+                      NULL::text,
+                      NULL::int,
+                      NULL::int,
+                      NULL::text
+        FROM zutaten_zuteilung
+  ) AS set_with_break_rows
+  ORDER BY "Cocktail", "Zutat" NULLS FIRST OFFSET 1
+) AS ordered_set;
 
 -- 2.2: 
 
