@@ -23,7 +23,7 @@ SELECT DISTINCT glas_typ AS GlasTyp
 SELECT cocktail_rezept.name AS CocktailRezept,
        glas_typ.name AS GlasTyp,
        glas_typ.volumen_ml AS GlasVolumen,
-       SUM(zutaten_zuteilung.volumen_ml) AS CocktailVolumen
+       SUM(zutaten_zuteilung.volumen_ml) AS CocktailVolumen,
        (CocktailVolumen / GlasVolumen * 100) AS ProzentGefuellt
   FROM cocktail_rezept
   INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
