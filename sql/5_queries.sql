@@ -19,11 +19,11 @@ SELECT cocktail_rezept.name AS CocktailRezept,
   INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
   INNER JOIN zutaten_zuteilung ON cocktail_rezept.name = zutaten_zuteilung.cocktail_rezept
   GROUP BY cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml;
-
--- 1.3: 
-SELECT "name" AS CocktailRezept
+  
+-- 1.3: Show all cocktail recipes that contain light or dark rum, and if they contain alcohol
+SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
   FROM cocktail_rezept
-  WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
+  WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
 
 -- 1.4: Count how many recipes exist for each glass type, order descending by occurence
 SELECT COUNT(name),
@@ -32,10 +32,11 @@ SELECT COUNT(name),
   GROUP BY glas_typ
   ORDER BY COUNT(name) DESC;
   
--- 1.5: Show all cocktail recipes that contain light or dark rum, and their alcohol content
-SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
+-- 1.5: Show all cocktail recipes that contain no alcohol
+-- FIXME: use IN/ANY/ALL
+SELECT "name" AS CocktailRezept
   FROM cocktail_rezept
-  WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
+  WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
   
 /*
  * 2.1: Print out all recipes in the database
