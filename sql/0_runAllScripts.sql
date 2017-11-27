@@ -12,6 +12,10 @@ DROP USER IF EXISTS :user;
 
 CREATE USER :user WITH PASSWORD :password;
 CREATE DATABASE :database WITH OWNER :user;
+
+-- echoing pw for dbuser to make testing easier
+\echo setting password > :password
+
 \c :database :user
 
 set client_min_messages = ERROR;
