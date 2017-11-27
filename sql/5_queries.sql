@@ -175,7 +175,7 @@ CREATE OR REPLACE VIEW festzutaten_bestand AS
   SELECT zutaten."name" AS "Zutat",
          zutaten.vorrat_ml AS "Vorrat"
     FROM zutaten
-    WHERE zutaten.name IN (SELECT "name" FROM festzutaten);
+    WHERE zutaten."name" IN (SELECT "name" FROM festzutaten);
 
 -- view before update
 SELECT * FROM festzutaten_bestand ORDER BY "Zutat";
