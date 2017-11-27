@@ -170,4 +170,10 @@ CREATE OR REPLACE VIEW komplette_rezepte AS
 -- view query
 SELECT * FROM komplette_rezepte;
 
--- 3.2: 
+-- 3.2: Zutatenübersicht für alle Zutaten die Festzutaten sind
+CREATE OR REPLACE VIEW festzutaten AS
+  SELECT name
+  FROM zutaten
+  INNER JOIN festzutaten ON zutaten.name = festzutaten.name;
+
+--UPDATE festzutaten SET 
