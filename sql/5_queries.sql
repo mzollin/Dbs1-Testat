@@ -173,6 +173,7 @@ SELECT * FROM komplette_rezepte;
 -- 3.2: Zutatenübersicht für alle Zutaten die Festzutaten sind
 CREATE OR REPLACE VIEW festzutatenliste AS
   SELECT zutaten.name AS Festzutaten
+  FROM zutaten
   INNER JOIN festzutaten ON zutaten.name = festzutaten.name;
 
 UPDATE festzutatenliste SET name = 'Crushed Eis' WHERE name = 'Eiswuerfel';
