@@ -42,6 +42,7 @@ SELECT COUNT(name),
   
 -- 1.5: Show all cocktail recipes that contain light or dark rum, and their alcohol content
 SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
+  FROM cocktail_rezept
   WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
   
 -- 2.1: 
