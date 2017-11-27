@@ -10,15 +10,15 @@ SELECT DISTINCT glas_typ AS GlasTyp
   FROM cocktail_rezept;
   
 -- 1.2: Show all cocktail recipes, the corresponding glasses, their volumes, and how much the glasses are filled
-SELECT cocktail_rezept.name AS CocktailRezept,
-       glas_typ.name AS GlasTyp,
+SELECT cocktail_rezept."name" AS CocktailRezept,
+       glas_typ."name" AS GlasTyp,
        glas_typ.volumen_ml AS GlasVolumen,
        SUM(zutaten_zuteilung.volumen_ml) AS CocktailVolumen,
        (SUM(zutaten_zuteilung.volumen_ml)::decimal / glas_typ.volumen_ml * 100)::int AS ProzentGefuellt
   FROM cocktail_rezept
-  INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
-  INNER JOIN zutaten_zuteilung ON cocktail_rezept.name = zutaten_zuteilung.cocktail_rezept
-  GROUP BY cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml;
+  INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ."name"
+  INNER JOIN zutaten_zuteilung ON cocktail_rezept."name" = zutaten_zuteilung.cocktail_rezept
+  GROUP BY cocktail_rezept."name", glas_typ."name", glas_typ.volumen_ml;
   
 -- 1.3: Show all cocktail recipes that contain light or dark rum, and if they contain alcohol
 SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
@@ -26,11 +26,11 @@ SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
   WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
 
 -- 1.4: Count how many recipes exist for each glass type, order descending by occurence
-SELECT COUNT(name),
+SELECT COUNT("name"),
        glas_typ AS GlasTyp
   FROM cocktail_rezept
   GROUP BY glas_typ
-  ORDER BY COUNT(name) DESC;
+  ORDER BY COUNT("name") DESC;
 
 -- 1.5: Show all ingredients that are needed for Cuba Libres or Pina Coladas
 SELECT DISTINCT zutaten_zuteilung.zutaten
@@ -157,24 +157,24 @@ FROM ordered_set OFFSET 1;
 
 -- 3.1: Zutatenübersicht für alle Rezepte mit zugehörigen Gläsern
 CREATE OR REPLACE VIEW komplette_rezepte AS
-  SELECT cocktail_rezept.name AS "Cocktail",
-         glas_typ.name AS "Glas",
-         string_agg(zutaten.name, ', ') AS "Zutaten"
+  SELECT cocktail_rezept."name" AS "Cocktail",
+         glas_typ."name" AS "Glas",
+         string_agg(zutaten."name", ', ') AS "Zutaten"
     FROM zutaten_zuteilung
-    JOIN zutaten ON zutaten_zuteilung.zutaten = zutaten.name
-    JOIN cocktail_rezept ON zutaten_zuteilung.cocktail_rezept = cocktail_rezept.name
-    JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
-  GROUP BY cocktail_rezept.name, glas_typ.name;
+    JOIN zutaten ON zutaten_zuteilung.zutaten = zutaten."name"
+    JOIN cocktail_rezept ON zutaten_zuteilung.cocktail_rezept = cocktail_rezept."name"
+    JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ."name"
+  GROUP BY cocktail_rezept."name", glas_typ."name";
 
 -- view query
 SELECT * FROM komplette_rezepte;
 
 -- 3.2: Zutatenübersicht für alle Zutaten die Festzutaten sind
 CREATE OR REPLACE VIEW festzutaten_bestand AS
-  SELECT zutaten.name AS "Zutat",
+  SELECT zutaten."name" AS "Zutat",
          zutaten.vorrat_ml AS "Vorrat"
     FROM zutaten
-    WHERE EXISTS(SELECT * FROM zutaten JOIN festzutaten ON zutaten.name = festzutaten.name);
+    WHERE EXISTS(SELECT * FROM zutaten JOIN festzutaten ON zutaten."name" = festzutaten."name");
 
 -- view before update
 SELECT * FROM festzutaten_bestand ORDER BY "Zutat";
