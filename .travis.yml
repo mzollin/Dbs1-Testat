@@ -1,4 +1,7 @@
-services: postgresql
+services:
+  postgresql
+addons:
+  postgresql: "9.6"
 script:
   - cd sql
   - psql -U postgres -f 0_runAllScripts.sql
