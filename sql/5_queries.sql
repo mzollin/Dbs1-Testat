@@ -171,13 +171,17 @@ CREATE OR REPLACE VIEW komplette_rezepte AS
 SELECT * FROM komplette_rezepte;
 
 -- 3.2: Zutatenübersicht für alle Zutaten die Festzutaten sind
-CREATE OR REPLACE VIEW festzutatenliste AS
-  SELECT zutaten.name AS Festzutatenmenge, zutaten.vorrat_ml AS Festzutatenvorrat
+CREATE OR REPLACE VIEW festzutaten_bestand AS
+  SELECT zutaten.name AS "Zutat",
+         zutaten.vorrat_ml AS "Vorrat"
     FROM zutaten
-    INNER JOIN festzutaten ON zutaten.name = festzutaten.name;
+    WHERE EXISTS(SELECT * FROM zutaten JOIN festzutaten ON zutaten.name = festzutaten.name);
 
-UPDATE festzutatenliste SET Festzutatenvorrat = '36' WHERE Festzutatenmenge = 'Eiswuerfel';
---UPDATE festzutatenliste SET zutaten.name = 'Crushed Eis' WHERE zutaten.name = 'Eiswuerfel';
+-- view before update
+SELECT * FROM festzutaten_bestand ORDER BY "Zutat";
 
--- view query
-SELECT * FROM festzutatenliste;
+-- set vorrat for Eiswuerfel to 30
+UPDATE festzutaten_bestand SET "Vorrat" = 30 WHERE "Zutat" = 'Eiswuerfel';
+
+-- view after update
+SELECT * FROM festzutaten_bestand ORDER BY "Zutat";
