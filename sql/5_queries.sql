@@ -118,7 +118,7 @@ SELECT CASE
 FROM ordered_set;
 
 /*
- * 2.2: clean up output from query 2.1 by reducing mention of recipe name to once per recipe
+ * 2.2: clean up output from query 2.1 by reducing mention of recipe name to once per recipe using CTE
  *
  *  > using row_number() to only print second mention of recipe name for each partition
  */
@@ -156,6 +156,17 @@ SELECT CASE
        "Fest"
 FROM ordered_set OFFSET 1;
 
--- 3.1: 
+-- 3.1: Zutatenübersicht für alle Rezepte mit zugehörigen Gläsern
+CREATE OR REPLACE VIEW komplette_rezepte AS
+  SELECT cocktail_rezept.name as "Cocktail",
+         cocktail_rezept.glas_typ as "Glas",
+         string_agg(zutaten.name, ', ') AS "Zutaten"
+    FROM zutaten_zuteilung
+    JOIN zutaten ON zutaten_zuteilung.zutaten = zutaten.name
+    JOIN cocktail_rezept ON zutaten_zuteilung.cocktail_rezept = cocktail_rezept.name
+  GROUP BY cocktail_rezept.name;
+
+-- view query
+SELECT * FROM komplette_rezepte;
 
 -- 3.2: 
