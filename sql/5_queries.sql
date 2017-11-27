@@ -176,7 +176,8 @@ CREATE OR REPLACE VIEW festzutatenliste AS
   FROM zutaten
   INNER JOIN festzutaten ON zutaten.name = festzutaten.name;
 
---UPDATE festzutatenliste SET name = 'Crushed Eis' WHERE name = 'Eiswuerfel';
+UPDATE festzutatenliste SET festzutaten.name = 'Crushed Eis' WHERE festzutaten.name = 'Eiswuerfel';
+UPDATE festzutatenliste SET zutaten.name = 'Crushed Eis' WHERE zutaten.name = 'Eiswuerfel';
 
 -- view query
 SELECT * FROM festzutatenliste;
