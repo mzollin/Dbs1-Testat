@@ -19,20 +19,16 @@ SELECT cocktail_rezept AS CocktailRezept,
 SELECT DISTINCT glas_typ AS GlasTyp
   FROM cocktail_rezept;
   
--- 1.2: 
+-- 1.2: Show all cocktail recipes, the corresponding glasses, their volumes, and how much the glasses are filled
 SELECT cocktail_rezept.name AS CocktailRezept,
        glas_typ.name AS GlasTyp,
        glas_typ.volumen_ml AS GlasVolumen,
        SUM(zutaten_zuteilung.volumen_ml) AS CocktailVolumen
+       (CocktailVolumen / GlasVolumen * 100) AS ProzentGefuellt
   FROM cocktail_rezept
   INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
   INNER JOIN zutaten_zuteilung ON cocktail_rezept.name = zutaten_zuteilung.cocktail_rezept
   GROUP BY cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml;
-  
--- FIXME: test query
-SELECT SUM(volumen_ml) AS CocktailVolumen
-  FROM zutaten_zuteilung
-  GROUP BY zutaten_zuteilung.cocktail_rezept;
 
 -- 1.3: 
 
