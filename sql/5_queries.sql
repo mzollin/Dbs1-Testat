@@ -37,8 +37,15 @@ SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
   
 /*
  * 2.1: Print out all recipes in the database
- *      (print a list of ingredients with the amount in ml of this ingredient,
- *      alcohol percentage & a flag telling if it's a solid)
+ *      (make a list of ingredients with the amount in ml of this ingredient,
+ *      alcohol percentage & a flag telling if it's a solid, for each recipe)
+ *
+ *  1. select all required fields using a join over zutaten_zuteilung & zutaten
+ *  1b) use a subquery to detect if an ingredient is a solid
+ *  1c) add empty rows with UNION to be used as dividers between recipes
+ *  2. select all fields and order them by recipe name, then by ingredient (null values first)
+ *  2b) offset result set by 1 getting rid of first divider row
+ *  3. Select everything again, use case to get rid of recipe name in divider column
  */
 SELECT CASE
          WHEN "Zutat" IS NULL THEN NULL::text
@@ -48,7 +55,7 @@ SELECT CASE
        "Menge(ml)",
        "Alk(%)",
        "Fest"
-  FROM (
+FROM (
   SELECT * FROM (
     SELECT cocktail_rezept AS "Cocktail",
            zutaten AS "Zutat",
@@ -71,6 +78,41 @@ SELECT CASE
   ) AS set_with_break_rows
   ORDER BY "Cocktail", "Zutat" NULLS FIRST OFFSET 1
 ) AS ordered_set;
+
+-- above query using WITH statements
+WITH set_with_break_rows AS (
+  SELECT cocktail_rezept AS "Cocktail",
+         zutaten AS "Zutat",
+         volumen_ml AS "Menge(ml)",
+         alkohol_volproz AS "Alk(%)",
+         CASE
+           WHEN EXISTS(SELECT * FROM festzutaten WHERE "name" = zutaten_zuteilung.zutaten) THEN 'Ja'
+           ELSE 'Nein'
+         END AS "Fest"
+    FROM zutaten_zuteilung FULL OUTER JOIN zutaten
+    ON zutaten_zuteilung.zutaten = zutaten."name"
+
+    UNION ALL
+    SELECT DISTINCT cocktail_rezept,
+                    NULL::text,
+                    NULL::int,
+                    NULL::int,
+                    NULL::text
+      FROM zutaten_zuteilung
+), ordered_set AS (
+  SELECT * FROM set_with_break_rows
+  ORDER BY "Cocktail", "Zutat" NULLS FIRST OFFSET 1
+)
+
+SELECT CASE
+         WHEN "Zutat" IS NULL THEN NULL::text
+         ELSE "Cocktail"
+       END,
+       "Zutat",
+       "Menge(ml)",
+       "Alk(%)",
+       "Fest"
+FROM ordered_set;
 
 -- 2.2: 
 
