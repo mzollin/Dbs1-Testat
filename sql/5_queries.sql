@@ -32,6 +32,7 @@ SELECT cocktail_rezept.name AS CocktailRezept,
 
 -- 1.3: 
 
+
 -- 1.4: Count how many recipes exist for each glass type, order descending by occurence
 SELECT COUNT(name),
        glas_typ AS GlasTyp
@@ -39,8 +40,9 @@ SELECT COUNT(name),
   GROUP BY glas_typ
   ORDER BY COUNT(name) DESC;
   
--- 1.5: 
-
+-- 1.5: Show all cocktail recipes that contain light or dark rum, and their alcohol content
+SELECT "name" AS CocktailRezept, enthaelt_alkohol AS Alkoholgehalt
+  WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
   
 -- 2.1: 
 
