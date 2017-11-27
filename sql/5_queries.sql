@@ -27,7 +27,7 @@ SELECT cocktail_rezept.name AS CocktailRezept,
   FROM cocktail_rezept
   INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
   INNER JOIN zutaten_zuteilung ON cocktail_rezept.name = zutaten_zuteilung.cocktail_rezept
-  GROUP BY cocktail_rezept.name;
+  GROUP BY cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml;
   
 -- FIXME: test query
 SELECT SUM(volumen_ml) AS CocktailVolumen
