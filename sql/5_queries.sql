@@ -21,6 +21,7 @@ SELECT cocktail_rezept."name" AS "CocktailRezept",
   GROUP BY cocktail_rezept."name", glas_typ."name", glas_typ.volumen_ml;
   
 -- 1.3: Show all cocktail recipes that contain light or dark rum, and if they contain alcohol
+-- unkorreliert
 SELECT "name" AS "CocktailRezept", enthaelt_alkohol AS "Alkoholgehalt"
   FROM cocktail_rezept
   WHERE "name" IN (SELECT cocktail_rezept FROM zutaten_zuteilung WHERE zutaten IN ('Rum hell', 'Rum dunkel'));
@@ -169,7 +170,7 @@ CREATE OR REPLACE VIEW komplette_rezepte AS
 -- view query
 SELECT * FROM komplette_rezepte;
 
--- 3.2: Zutatenübersicht für alle Zutaten die Festzutaten sind
+-- 3.2: Vorratsübersicht
 CREATE OR REPLACE VIEW festzutaten_bestand AS
   SELECT zutaten."name" AS "Zutat",
          zutaten.vorrat_ml AS "Vorrat"
