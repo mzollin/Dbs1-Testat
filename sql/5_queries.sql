@@ -34,9 +34,9 @@ SELECT COUNT(name),
   
 -- 1.5: Show all cocktail recipes that contain no alcohol
 -- FIXME: use IN/ANY/ALL
-SELECT "name" AS CocktailRezept
-  FROM cocktail_rezept
-  WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
+--SELECT "name" AS CocktailRezept
+  --FROM cocktail_rezept
+  --WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
   
 /*
  * 2.1: Print out all recipes in the database
@@ -158,8 +158,8 @@ FROM ordered_set OFFSET 1;
 
 -- 3.1: Zutatenübersicht für alle Rezepte mit zugehörigen Gläsern
 CREATE OR REPLACE VIEW komplette_rezepte AS
-  SELECT cocktail_rezept.name as "Cocktail",
-         glas_typ.name as "Glas",
+  SELECT cocktail_rezept.name AS "Cocktail",
+         glas_typ.name AS "Glas",
          string_agg(zutaten.name, ', ') AS "Zutaten"
     FROM zutaten_zuteilung
     JOIN zutaten ON zutaten_zuteilung.zutaten = zutaten.name
@@ -171,9 +171,12 @@ CREATE OR REPLACE VIEW komplette_rezepte AS
 SELECT * FROM komplette_rezepte;
 
 -- 3.2: Zutatenübersicht für alle Zutaten die Festzutaten sind
-CREATE OR REPLACE VIEW festzutaten AS
-  SELECT name
+CREATE OR REPLACE VIEW festzutatenliste AS
+  SELECT "name" AS Festzutaten
   FROM zutaten
   INNER JOIN festzutaten ON zutaten.name = festzutaten.name;
 
---UPDATE festzutaten SET 
+UPDATE festzutatenliste SET name = 'Crushed Eis' WHERE name = 'Eiswuerfel';
+
+-- view query
+SELECT * FROM festzutatenliste;
