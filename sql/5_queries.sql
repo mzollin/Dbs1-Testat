@@ -20,10 +20,11 @@ SELECT cocktail_rezept.name AS CocktailRezept,
   INNER JOIN zutaten_zuteilung ON cocktail_rezept.name = zutaten_zuteilung.cocktail_rezept
   GROUP BY cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml;
 
--- 1.3: 
-SELECT "name" AS CocktailRezept
-  FROM cocktail_rezept
-  WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
+/* -- 1.3: 
+ * SELECT "name" AS CocktailRezept
+ * FROM cocktail_rezept
+ * WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
+ */
 
 -- 1.4: Count how many recipes exist for each glass type, order descending by occurence
 SELECT COUNT(name),
@@ -116,8 +117,44 @@ SELECT CASE
        "Fest"
 FROM ordered_set;
 
--- 2.2: 
+/*
+ * 2.2: clean up output from query 2.1 by reducing mention of recipe name to once per recipe
+ *
+ *  > using row_number() to only print second mention of recipe name for each partition
+ */
+WITH set_with_break_rows AS (
+  SELECT cocktail_rezept AS "Cocktail",
+         zutaten AS "Zutat",
+         volumen_ml AS "Menge(ml)",
+         alkohol_volproz AS "Alk(%)",
+         CASE
+           WHEN EXISTS(SELECT * FROM festzutaten WHERE "name" = zutaten_zuteilung.zutaten) THEN 'Ja'
+           ELSE 'Nein'
+         END AS "Fest"
+    FROM zutaten_zuteilung FULL OUTER JOIN zutaten
+    ON zutaten_zuteilung.zutaten = zutaten."name"
 
+    UNION ALL
+    SELECT DISTINCT cocktail_rezept,
+                    NULL::text,
+                    NULL::int,
+                    NULL::int,
+                    NULL::text
+      FROM zutaten_zuteilung
+), ordered_set AS (
+  SELECT * FROM set_with_break_rows
+  ORDER BY "Cocktail", "Zutat" NULLS FIRST
+)
+
+SELECT CASE
+         WHEN ROW_NUMBER() OVER(PARTITION BY "Cocktail") = 2 THEN "Cocktail"
+         ELSE NULL::text
+       END,
+       "Zutat",
+       "Menge(ml)",
+       "Alk(%)",
+       "Fest"
+FROM ordered_set OFFSET 1;
 
 -- 3.1: 
 
