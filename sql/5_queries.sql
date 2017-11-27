@@ -24,7 +24,7 @@ SELECT cocktail_rezept.name AS CocktailRezept,
        glas_typ.name AS GlasTyp,
        glas_typ.volumen_ml AS GlasVolumen,
        SUM(zutaten_zuteilung.volumen_ml) AS CocktailVolumen,
-       (SUM(zutaten_zuteilung.volumen_ml) / glas_typ.volumen_ml * 100) AS ProzentGefuellt
+       (SUM(zutaten_zuteilung.volumen_ml)::decimal / glas_typ.volumen_ml * 100) AS ProzentGefuellt
   FROM cocktail_rezept
   INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
   INNER JOIN zutaten_zuteilung ON cocktail_rezept.name = zutaten_zuteilung.cocktail_rezept
