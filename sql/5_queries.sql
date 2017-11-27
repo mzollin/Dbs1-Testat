@@ -159,12 +159,13 @@ FROM ordered_set OFFSET 1;
 -- 3.1: Zutatenübersicht für alle Rezepte mit zugehörigen Gläsern
 CREATE OR REPLACE VIEW komplette_rezepte AS
   SELECT cocktail_rezept.name as "Cocktail",
-         cocktail_rezept.glas_typ as "Glas",
+         glas_typ.name as "Glas",
          string_agg(zutaten.name, ', ') AS "Zutaten"
     FROM zutaten_zuteilung
     JOIN zutaten ON zutaten_zuteilung.zutaten = zutaten.name
     JOIN cocktail_rezept ON zutaten_zuteilung.cocktail_rezept = cocktail_rezept.name
-  GROUP BY cocktail_rezept.name;
+    JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name
+  GROUP BY cocktail_rezept.name, glas_typ.name;
 
 -- view query
 SELECT * FROM komplette_rezepte;
