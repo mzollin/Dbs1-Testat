@@ -31,12 +31,11 @@ SELECT COUNT(name),
   FROM cocktail_rezept
   GROUP BY glas_typ
   ORDER BY COUNT(name) DESC;
-  
--- 1.5: Show all cocktail recipes that contain no alcohol
--- FIXME: use IN/ANY/ALL
---SELECT "name" AS CocktailRezept
-  --FROM cocktail_rezept
-  --WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
+
+-- 1.5: Show all ingredients that are needed for Cuba Libres or Pina Coladas
+SELECT DISTINCT zutaten_zuteilung.zutaten
+  FROM zutaten_zuteilung
+  WHERE zutaten_zuteilung.cocktail_rezept IN ('Pina Colada', 'Cuba Libre');
   
 /*
  * 2.1: Print out all recipes in the database
