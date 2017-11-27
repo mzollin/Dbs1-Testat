@@ -20,8 +20,16 @@ SELECT DISTINCT glas_typ AS GlasTyp
   FROM cocktail_rezept;
   
 -- 1.2: 
-SELECT cocktail_rezept.name, glas_typ.name, glas_typ.volumen_ml
-  FROM cocktail_rezept INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name;
+SELECT cocktail_rezept.name AS CocktailRezept,
+       glas_typ.name AS GlasTyp,
+       glas_typ.volumen_ml AS GlasVolumen
+  FROM cocktail_rezept
+  INNER JOIN glas_typ ON cocktail_rezept.glas_typ = glas_typ.name;
+  
+-- FIXME: test query
+SELECT SUM(volumen_ml) AS CocktailVolumen
+  FROM zutaten_zuteilung
+  GROUP BY zutaten_zuteilung.cocktail_rezept;
 
 -- 1.3: 
 
