@@ -23,7 +23,7 @@ SELECT cocktail_rezept.name AS CocktailRezept,
 -- 1.3: 
 SELECT "name" AS CocktailRezept
   FROM cocktail_rezept
-  WHERE (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
+  WHERE enthaelt_alkohol = (SELECT "name" FROM cocktail_rezept WHERE enthaelt_alkohol = 'f');
 
 -- 1.4: Count how many recipes exist for each glass type, order descending by occurence
 SELECT COUNT(name),
