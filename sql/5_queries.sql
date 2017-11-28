@@ -149,7 +149,7 @@ WITH set_with_break_rows AS (
 SELECT CASE
          WHEN ROW_NUMBER() OVER(PARTITION BY "Cocktail") = 2 THEN "Cocktail"
          ELSE NULL::text
-       END,
+       END AS "Cocktail",
        "Zutat",
        "Menge(ml)",
        "Alk(%)",
